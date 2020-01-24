@@ -1,0 +1,21 @@
+Give the name of the chromosome with the most genes associated with breast cancer. Give the number of transcripts of this chromosome? (2 queries)
+
+QUERY 1:
+mysql> SELECT chromosome, count(gene_id) AS gene_count FROM gene WHERE description rlike "breast cancer" GROUP BY chromosome ORDER BY gene_count DESC limit 1;
++------------+------------+
+| chromosome | gene_count |
++------------+------------+
+| 16         |          2 |
++------------+------------+
+1 row in set (0.06 sec)
+
+QUERY 2:
+
+mysql> SELECT chromosome, count(*) AS transcript_count FROM gene AS g JOIN transcript AS t ON g.gene_id=t.gene_id WHERE chromosome=9 GROUP BY chromosome;
++------------+------------------+
+| chromosome | transcript_count |
++------------+------------------+
+| 9          |             6595 |
++------------+------------------+
+1 row in set, 5348 warnings (0.02 sec)
+

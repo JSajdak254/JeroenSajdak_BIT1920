@@ -1,0 +1,10 @@
+Give the name of the gene with the most exons? Give the number of exons of this gene?
+
+sql> SELECT gene_name, count(exon_id) AS exon_count FROM gene AS g JOIN transcript AS t ON g.gene_id=t.gene_id JOIN exon_transcript AS et on et.transcript_id=t.transcript_id GROUP BY g.gene_id ORDER BY count(exon_id) DESC LIMIT 1;
++-----------+------------+
+| gene_name | exon_count |
++-----------+------------+
+| SYNE1     |       1415 |
++-----------+------------+
+1 row in set (0.75 sec)
+

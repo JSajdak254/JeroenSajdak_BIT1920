@@ -1,0 +1,11 @@
+Give the name and length of the third largest gene in the genome.
+
+mysql> select gene_name, (seq_region_end-seq_region_start+1) AS length from gene order by length DESC limit 2,1;
++-----------+---------+
+| gene_name | length  |
++-----------+---------+
+| PARP1     | 2493040 |
++-----------+---------+
+1 row in set (0.03 sec)
+
+#limit SKIP,SELECT

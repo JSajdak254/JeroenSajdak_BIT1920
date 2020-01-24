@@ -1,0 +1,61 @@
+Give the number of rows from the exon table and do the same for the exon_transcript table (2 queries). Explain why there is a difference in number of rows.
+
+QUERY 1:
+
+mysql> SELECT count(exon_id) FROM exon;
++----------------+
+| count(exon_id) |
++----------------+
+|         642590 |
++----------------+
+1 row in set (0.06 sec)
+
+QUERY 2:
+
+mysql> SELECT count(exon_id) FROM exon_transcript;
++----------------+
+| count(exon_id) |
++----------------+
+|        1178393 |
++----------------+
+1 row in set (0.08 sec)
+
+EXPLANATION:
+A full gene transcript is generally compounded by several exons. Generally, more than one exon is required to form a functional protein in the end. 
+If we take a look in the exon_trascript table we can see that the exon_id is always unique, while the transcript ID isn't. This is again, because multiple exons are required to form a transcript.
++---------+---------------+------+
+| exon_id | transcript_id | rank |
+| 1561835 |        408501 |    7 | (Exerpt of the exon_transcript table)
+| 1561836 |        408502 |    1 |
+| 1561837 |        408502 |    2 |
+| 1561838 |        408503 |    1 |
+| 1561839 |        408503 |    2 |
+| 1561840 |        408504 |    1 |
+| 1561841 |        408504 |    2 |
+| 1561842 |        408504 |    3 |
+| 1561843 |        408504 |    4 |
+| 1561844 |        408504 |    5 |
+| 1561845 |        408504 |    6 |
+| 1561846 |        408504 |    7 |
+| 1561847 |        408504 |    8 |
+| 1561848 |        408504 |    9 |
+| 1561849 |        408504 |   10 |
+| 1561850 |        408504 |   11 |
+| 1561851 |        408504 |   12 |
+| 1561852 |        408505 |    1 |
+| 1561853 |        408505 |    2 |
+| 1561854 |        408505 |    3 |
+| 1561855 |        408505 |    4 |
+| 1561856 |        408505 |    5 |
+| 1561857 |        408505 |    6 |
+| 1561858 |        408505 |    7 |
+| 1561859 |        408505 |    8 |
+| 1561860 |        408505 |    9 |
+| 1561861 |        408505 |   10 |
+| 1561862 |        408505 |   11 |
+| 1561863 |        408505 |   12 |
+| 1561864 |        408505 |   13 |
++---------+---------------+------+
+
+
+

@@ -1,0 +1,6 @@
+Give the number of medicines that have side effects in more than 8% of cases.
+
+db.getCollection('bioinf_mongo_examen').find({percentage_of_side_effects:{$gt:8}}).count()
+
+399
+
