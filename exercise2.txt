@@ -1,0 +1,79 @@
+	A research lab keeps track of all projects PhD students and lab technicians work on. This data consists of
+
+	Personnel number
+	Name
+	Date of birth
+	Lab code
+	Lab name
+	Research code
+	Research description
+	Research supervisor
+	Normalise this data up to 3NF, taking in to account these constraints:
+
+	Each personnel number is unique
+	Each lab has a single lab code
+	Each research project has a single code and supervisor
+	Each member of the personnel may work on one or more research projects
+	Personnel names need not necessarily be unique
+	Research code, description and supervisor are repeating fields
+	Save the results of each normalisation step, together with a description of the steps you took in a document with a clear name. Add this document to your git-repository and choose a suiting commit-message.
+
+0NF
+#################################################################
+
+(personnel_ID, name, DOB, lab_code, lab_name, research_code, research_description, research_supervisor)
+
+Explanation:
+This data is already normalised at level 0NF.
+
+#################################################################
+/0NF
+
+1NF
+#################################################################
+
+Research_division("personnel_ID", name, DOB, lab_code, lab_name, research_code, research_description, research_supervisor)
+
+Explanation:
+This data is already normalised at level 1NF, I assume each cell only contains one datapoint, and all entries are the same. 
+
+#################################################################
+/1NF
+
+2NF
+#################################################################
+
+Personnel_table("personnel_ID", name, DOB)
+	linker_table("personnel_ID","lab_code","research_code")
+	Lab_identifier_table("lab_code", lab_name)
+	research_identifier_table("research_code", research_description, research_supervisor)
+
+Explanation:
+A lot of tables were split:
+	The personnel table now only contains data related to the personnel themselves.
+	A linker table was created, containing the primary keys of the personnel, the lab in which they performed the experiment, and the research they performed.
+	The labs are now identified in a seperate table.
+	Research is now identified seperately.
+
+Now all data is dependent on the primary key.
+
+#################################################################
+/2NF
+
+3NF
+#################################################################
+
+ersonnel_table("personnel_ID", name, DOB)
+	linker_table("personnel_ID","lab_code","research_code")
+	Lab_identifier_table("lab_code", lab_name)
+	research_identifier_table("research_code", research_description, research_supervisor)
+
+Explanation:
+Nothing changed, all fields can now only be determined by the primary key alone. This was already the case after performing 2NF. For instance:
+	There's no need to further split DOB into a seperate table, it cannot be changed either way.
+	Research description and research supervisor cannot be determined from each other.
+
+#################################################################
+/3NF
+
+
