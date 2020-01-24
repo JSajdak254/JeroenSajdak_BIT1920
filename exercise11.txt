@@ -1,0 +1,9 @@
+Give the mapping location of the variant rs499899635 in the zebrafish?
+
+
+
+$ curl 'https://rest.ensembl.org/variation/danio_rerio/rs499899635?' -H 'Content-type:application/json'
+
+
+{"ambiguity":"Y","var_class":"SNP","evidence":[],"most_severe_consequence":"intergenic_variant","synonyms":[],"MAF":null,"source":"Variants (including SNPs and indels) imported from dbSNP (mapped to GRCz11)","minor_allele":null,"mappings":[{"end":10138412,"start":10138412,"assembly_name":"GRCz11","coord_system":"chromosome","location":"10:10138412-10138412","seq_region_name":"10","allele_string":"T/C","strand":1}],"ancestral_allele":null,"name":"rs499899635"}
+
